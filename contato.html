@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DTC Caldeiras - Layout</title>
+    <style>
+.container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+
+        .header {
+            background-color: #333;
+            display: flex;
+            font-family: Arial, sans-serif;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .info-topo {
+
+            padding: 10px;
+            font-size: 18px;
+            display: block;
+            flex-direction: row;
+        }
+
+        .redes_sociais {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .menu {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+
+        }
+
+        .menu nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .menu nav ul a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .contato-container {
+    background-color: #333;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;       
+    align-items: flex-start;
+    text-align: center;
+}
+
+.contato-container .atendimento-info,
+.contato-container .formulario,
+.contato-container .redes_sociais_final {
+    flex: 1;
+    min-width: 250px;
+}
+
+
+
+.formulario form{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.formulario input,
+.formulario textarea{
+    padding:8px;
+    width:100%;
+}
+
+.formulario textarea{
+    min-height:100px;
+}
+
+
+
+
+
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <a href="index.html"><img src="imagens/logo-dtc.png" alt="DTC Caldeiras">
+                </a>
+            </div>
+            <div class="info-topo">
+
+                <p>Soluções completas: Fabricação, Manutenção, Instalação, Reformas e Peças
+
+                </p>
+                <p>(51) 3712-3423 / (51) 99716-5739 | comercial@dtccaldeiras.com</p>
+            </div>
+            <div class="redes_sociais">
+                <a href="https://www.facebook.com/dtccaldeiraas"><img src="imagens/facebook-icon.png"
+                        alt="Facebook"></a>
+                <a href="https://www.instagram.com/dtccaldeiras/"><img src="imagens/instagram-icon.png"
+                        alt="Instagram"></a>
+
+            </div>
+        </header>
+
+        <div class="menu">
+            <nav>
+                <ul>
+
+                    <li><a href="index.html">INÍCIO</a></li>
+                    <li><a href="incompleto.html">SERVIÇOS</a></li>
+                    <li><a href="contato.html">CONTATO</a></li>
+                    <li><a href="incompleto.html">GALERIA</a></li>
+                    <li><a href="loja.html">LOJA</a></li>
+                </ul>
+
+            </nav>
+        </div>
+
+                  <section class="contato-container">
+                <div class="atendimento-info">
+                    <h3>ATENDIMENTO</h3>
+                    <p>Segunda à Sexta das 08:00 as 18:00</p>
+                    <p>Endereço: RSC 453 KM 42 Nº 6151 - NOVO PARAÍSO ESTRELA - RS</p>
+
+                    <a
+                        href="https://www.google.com/maps/place/DTC+Caldeiras/data=!4m2!3m1!1s0x0:0xd21ec0245dca2a8e?sa=X&ved=1t:2428&ictx=111">
+                        <img src="imagens/maps.jpg" alt="Mapa de Localização"></a>
+                </div>
+
+                <div class="formulario">
+                    <form>
+                        <input name="nome" type="text" placeholder="Nome *">
+                        <input name="email" type="email" placeholder="Email *">
+                        <input name="telefone" type="tel" placeholder="Telefone">
+                        <input name="assunto" type="text" placeholder="Assunto">
+                        <textarea name="mensagem" placeholder="Mensagem"></textarea>
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+
+                <div class="redes_sociais_final">
+                    <a href="https://wa.me/5551997165739?text=Olá!+Gostaria+de+um+orçamento." target="_blank"
+                        rel="noopener noreferrer" class="btn-whatsapp">
+                        <img src="imagens/whatsapp-icon.png" alt="WhatsApp">
+                    </a>
+                    <p>Nas nossas redes sociais você fica por dentro das novidades</p>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+    <script>
+
+        document.getElementById("form-contato").addEventListener("submit", async function (e) {
+
+            e.preventDefault();
+
+            const form = e.target;
+
+            const dados = {
+                nome: form.nome.value,
+                email: form.email.value,
+                telefone: form.telefone.value,
+                assunto: form.assunto.value,
+                mensagem: form.mensagem.value
+            };
+
+            const resposta = await fetch("/enviar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dados)
+            });
+
+            const resultado = await resposta.json();
+
+            alert("Mensagem enviada!");
+
+        });
+
+    </script>
+</body>
+</html>
+
